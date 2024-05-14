@@ -2,8 +2,8 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Doctrine\Odm\Filter\DateFilter;
-use ApiPlatform\Metadata\ApiFilter;
+// use ApiPlatform\Doctrine\Odm\Filter\DateFilter;
+// use ApiPlatform\Metadata\ApiFilter;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Post;
@@ -17,7 +17,7 @@ use Doctrine\ORM\Mapping as ORM;
     [ new GetCollection(),
     new Post(validationContext: ['groups' => ['group-modification']])] // validation par type d'op
 )]
-#[ApiFilter(DateFilter::class, properties: ['createdAt'])]
+// #[ApiFilter(DateFilter::class, properties: ['createdAt'])]
 
 class Product
 {
