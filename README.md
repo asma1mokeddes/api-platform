@@ -57,7 +57,36 @@ c'est une syntaxe puissante et flexible pour représenter des données
 - Le lien de la ressource : Les liens permettent de naviguer entre différentes ressources. Dans la réponse JSON-LD, les liens sont souvent représentés sous forme de champs contenant des URL vers d'autres ressources liées.
 
 
-///8/// Pagination :
+/// 8 /// Pagination :
+La pagination permet de diviser les résultats d'une collection en plusieurs pages. 
+
+** Activation de la pagination : **
+La pagination est activée par défaut pour toutes les collections. Chaque collection contient 30 éléments par page. on peut configurer l'activation de la pagination et le nombre d'éléments par page de plusieurs manières :
+
+- Côté serveur : Fichier api_platform.yaml  (aciver ou désactiver la pagination globalement ou par ressource).
+
+- Côté client :  Fichier api_platform.yaml  (configurer la valeur de pagination_client_enabled).
+-> activer ou désactiver la pagination en ajoutant un paramètre GET personnalisé dans la requête. 
+
+- Sur une opération :
+#[ApiResource(
+    operations: [
+        new GetCollection(
+            paginationEnabled: false
+        )   
+    ]
+)]
+
+** Réponse JSON de pagination : **
+Lorsque on effectue une requête GET sur une collection contenant plus d'une page, API Platform renvoie une collection 'Hydra' -> document JSON(-LD) valide contenant les éléments de la page demandée ainsi que des métadonnées de pagination.
+
+La réponse JSON de pagination comprend les éléments suivants :
+hydra:member : Les éléments de la collection actuelle.
+hydra:totalItems : Le nombre total d'éléments dans la collection.
+hydra:view : Des liens hypermédia vers la première, la dernière, la suivante et la précédente page de la collection.
+
+
+
 
 ///7/// Sub-Ressource :
 Une ressources qui n'a pas vocation à être récupérée seule 
