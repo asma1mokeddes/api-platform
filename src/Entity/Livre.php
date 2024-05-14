@@ -18,9 +18,9 @@ use Doctrine\ORM\Mapping as ORM;
     operations: [
         new GetCollection(), // tous les livres /livres
         new Post(), // creer un livre /livres + body
-        new Get(), //un seul livre /livres/{id}
+        new Get(), // un seul livre /livres/{id}
         // new Patch(), // modifie la ressource
-       // new Put() // remplace la ressource
+        // new Put() // remplace la ressource
     ]
 )]
 class Livre
