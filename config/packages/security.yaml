@@ -10,26 +10,18 @@ security:
         main:
             lazy: true
             provider: users_in_memory
-
-        login:
-            pattern:  ^/api/*
+            
+        api:
+            pattern:   ^/api/docs
             stateless: true
+            jwt: ~
             json_login:
-                check_path: /api/login_check
+                check_path: /api/docs
                 success_handler: lexik_jwt_authentication.handler.authentication_success
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
 
-        api:
-            pattern:   ^/api
-            stateless: true
-            jwt: ~
-
-        refresh:
-            pattern:  ^/api/token/refresh
-            stateless: true
-
     access_control:
-        - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/docs}
         - { path: ^/api/token/refresh, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/, roles: ROLE_ADMIN }
 
