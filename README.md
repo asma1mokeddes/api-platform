@@ -20,30 +20,45 @@ avec le Groups et normalizationContext/denormalizationContext
 Personnaliser les champs retournés en fonction d'une variable ou d'un élément spécifique.
 Cette personnalisation peut être effectuée en utilisant deux mécanismes principaux :
 
--- le ContextBuilder pour personnaliser la sortie en fonction de la requête HTTP 
+-- le ContextBuilder pour personnaliser la sortie en fonction de la requête HTTP  -> 1 seul fois (appelé en premier)
 
 exemple :  exclure certains champs de la réponse en fonction de paramètres de requête spécifiques.
+( quand l'utilisateur est connecté tu rajoutes qqchose)
 
---  le Normalizer pour personnaliser la sortie en fonction des données elles-mêmes.
+--  le Normalizer pour personnaliser la sortie en fonction des données elles-mêmes. -> nbr de rep
 exemple :  exclure certains champs de la réponse en fonction des propriétés de l'objet.
 
 
 ///4// Les Décorateurs : plus tard
 
-///5// Validation :
+///5/// Validation :
 ça permet de s'assurer que les données entrantes respectent certaines règles et contraintes avant d'être traitées ou enregistrées dans la base de données. comment c'est utilisé ? (cf Product.php)
 y'a deux manières de faire :
 - validation par groupe d'opération (on applique la validation sur un groupe d'opérations)
-- validation personnalisé
+- validation personnalisé (function)
 
-///6// Filtres :
+///6/// Filtres : comment les utiliser et comment créer des filtres personnalisés?
+Api plateform fournit des fct de filtres 
 
-///7/// JSON-LD :
+- Filtres prédéfinis : (dates, créneaux etc)
+-- SearchFilter : Permet de rechercher des valeurs partielles dans les champs de texte. Les options disponibles incluent partial, start, end et word_start.
+-- DateFilter : Permet de filtrer les dates en fonction de critères tels que after, before, strictly_after et strictly_before.
+-- BooleanFilter : Permet de filtrer les valeurs booléennes (true, false, 1, 0).
+-- NumericFilter : Permet de filtrer les valeurs numériques.
+-- RangeFilter : Permet de filtrer les valeurs numériques dans une plage spécifiée, avec des options comme lt (inférieur à), gt (supérieur à), lte (inférieur ou égal à), gte (supérieur ou égal à) et between.
+-- RegexFilter : Permet de filtrer les valeurs en utilisant des expressions régulières.
+-- OrderFilter : Permet de trier les résultats.
++ filtre personalisé 
+
+/// 7 /// JSON-LD :
 
 
 ///8/// Pagination :
 
 ///7/// Sub-Ressource :
+Une ressources qui n'a pas vocation à être récupérée seule 
+Dépend (fonctionnellement) d'une autre ressource 
+
 
 
 
