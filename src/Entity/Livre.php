@@ -9,6 +9,7 @@ use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Put;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 use App\Repository\LivreRepository;
 use Doctrine\ORM\Mapping as ORM;
@@ -18,10 +19,12 @@ use Doctrine\ORM\Mapping as ORM;
     operations: [
         new GetCollection(), // tous les livres /livres
         new Post(), // creer un livre /livres + body
-        new Get(), // un seul livre /livres/{id}
+        new Get(denormalizationContext:['groups' => ['groupA']]), // un seul livre /livres/{id}
         // new Patch(), // modifie la ressource
         // new Put() // remplace la ressource
-    ]
+    ],
+    normalizationContext:['groups' => ['read']],
+    denormalizationContext: ["groups" => ["write"]],
 )]
 class Livre
 {
@@ -37,8 +40,21 @@ class Livre
 
     #[ApiProperty(writable: true)]
     #[ORM\Column(length: 255)]
+    #[Groups(['groupA'])]
     private ?string $description = null;
 
+
+    #[ORM\Column(length: 255)]
+    #[Groups(["read"])]
+    private $titre;
+
+    #[ORM\Column(length: 255)]
+    #[Groups(["read"])]
+    private $auteur;
+
+    #[ORM\Column(length: 255)]
+    #[Groups(["write"])]
+    private $datePublication;
 
     public function getId(): ?int
     {
@@ -56,6 +72,19 @@ class Livre
 
         return $this;
     }
+
+    public function getAuteur(): ?string
+    {
+        return $this->auteur;
+    }
+
+    public function setAuteur(string $auteur): static
+    {
+        $this->auteur = $auteur;
+
+        return $this;
+    }
+
     public function getDescription(): ?string
     {
         return $this->description;
@@ -64,6 +93,29 @@ class Livre
     public function setDescription(string $description): static
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getTitre(): ?string
+    {
+        return $this->titre;
+    }
+
+    public function setTitre(string $titre): static
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
+    public function getDatePublication(): ?string
+    {
+        return $this->datePublication;
+    }
+
+    public function setDatePublication(string $datePublication): static
+    {
+        $this->datePublication = $datePublication;
 
         return $this;
     }
