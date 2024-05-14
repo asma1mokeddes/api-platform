@@ -19,21 +19,26 @@ use Doctrine\ORM\Mapping as ORM;
         new GetCollection(), // tous les livres /livres
         new Post(), // creer un livre /livres + body
         new Get(), //un seul livre /livres/{id}
-        new Patch(), // modifie la ressource
-        new Put() // remplace la ressource
+        // new Patch(), // modifie la ressource
+       // new Put() // remplace la ressource
     ]
 )]
 class Livre
 {
-    #[ApiProperty(identifier:false)] // info non exposée à l'extérieur de l'api et ce n'est pas lui la clé primaire
+  //  #[ApiProperty(identifier:false)] // info non exposée à l'extérieur de l'api et ce n'est pas lui la clé primaire
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ApiProperty(identifier:true)]
+   // #[ApiProperty(identifier:true, writable: false)]
     #[ORM\Column(length: 255)]
     private ?string $name = null;
+
+    #[ApiProperty(writable: true)]
+    #[ORM\Column(length: 255)]
+    private ?string $description = null;
+
 
     public function getId(): ?int
     {
@@ -48,6 +53,17 @@ class Livre
     public function setName(string $name): static
     {
         $this->name = $name;
+
+        return $this;
+    }
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): static
+    {
+        $this->description = $description;
 
         return $this;
     }
