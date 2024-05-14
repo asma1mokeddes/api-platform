@@ -25,13 +25,13 @@ use Doctrine\ORM\Mapping as ORM;
 )]
 class Livre
 {
-  //  #[ApiProperty(identifier:false)] // info non exposée à l'extérieur de l'api et ce n'est pas lui la clé primaire
+    #[ApiProperty(identifier:false)] // info non exposée à l'extérieur de l'api et ce n'est pas lui la clé primaire
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-   // #[ApiProperty(identifier:true, writable: false)]
+    #[ApiProperty(identifier:true, writable: false)]
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
