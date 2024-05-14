@@ -87,7 +87,6 @@ hydra:view : Des liens hypermédia vers la première, la dernière, la suivante 
 
 
 
-
 ///7/// Sub-Ressource :
 Une ressources qui n'a pas vocation à être récupérée seule 
 Dépend (fonctionnellement) d'une autre ressource 

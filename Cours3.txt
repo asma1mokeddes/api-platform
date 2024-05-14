@@ -1,0 +1,32 @@
+-- Types d'authentification:
+
+** JWT (JSON Web Token) **
+Le JWT est un type d'authentification où un token autosuffisant est généré. Ce token contient toutes 
+les informations nécessaires pour identifier un utilisateur, et il est validé par sa signature. Une 
+fois le token émis, tant qu'il reste valide, le serveur accepte l'utilisateur sans nécessiter de 
+nouvelle authentification.
+
+Exemple pratique :
+Prenons l'exemple de Netflix. Lorsqu'un utilisateur se connecte à son compte, un token JWT est créé.
+Même si Netflix demande à l'utilisateur de se déconnecter, tant que le token JWT reste valide
+(par exemple, pendant un an), l'utilisateur peut continuer à utiliser le service sans se reconnecter. 
+Cela est dû au fait que le serveur, qui reconnaît le token comme toujours valide, continue de traiter
+l'utilisateur comme authentifié.
+
+
+** OAuth 2.0 **
+OAuth 2.0 est un protocole plus complexe qui permet à un utilisateur d'autoriser des applications
+tierces à accéder à ses données en son nom, sans partager ses identifiants. Ce processus utilise 
+généralement deux types de tokens : un access_token, qui n'est pas stocké durablement par le serveur,
+et un refresh_token, qui est conservé dans une base de données pour permettre de renouveler 
+l'access_token lorsque ce dernier expire.
+
+Exemple pratique :
+Continuons avec Netflix. Imaginez que vous accédiez à votre profil sur Netflix. Après une heure, vous
+essayez d'accéder à une autre page mais votre access_token a expiré. Normalement, avec un système 
+basé sur JWT, le serveur vous demanderait de vous reconnecter. Toutefois, avec OAuth 2.0, vous pouvez 
+utiliser votre refresh_token pour demander un nouvel access_token sans avoir besoin de saisir à 
+nouveau vos identifiants. Si vous choisissez de vous "déconnecter de tous les appareils" sur Netflix, 
+le service invalide le refresh_token stocké dans sa base de données. Cela empêche toute application 
+d'utiliser ce refresh_token pour obtenir un nouvel access_token, vous obligeant ainsi à vous 
+authentifier de nouveau pour continuer à utiliser le service.
