@@ -51,6 +51,10 @@ Api plateform fournit des fct de filtres
 + filtre personalisé 
 
 /// 7 /// JSON-LD :
+c'est une syntaxe puissante et flexible pour représenter des données
+- Le type de ressource : Dans JSON-LD, chaque ressource est typiquement identifiée par un type. Par exemple, pour une ressource de type Product, le JSON-LD pourrait inclure un champ @type avec la valeur Product, indiquant ainsi le type de la ressource.
+
+- Le lien de la ressource : Les liens permettent de naviguer entre différentes ressources. Dans la réponse JSON-LD, les liens sont souvent représentés sous forme de champs contenant des URL vers d'autres ressources liées.
 
 
 ///8/// Pagination :
